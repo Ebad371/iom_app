@@ -1,11 +1,11 @@
 import pandas as pd 
 import streamlit as st 
 import random
-from streamlit_option_menu import option_menu
 
-import pandas as pd
+
+
 import numpy as np
-import random
+
 
 data = {'jobs': ['Data Scientist',
   'HR',
