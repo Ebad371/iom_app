@@ -172,598 +172,598 @@ selected = st.sidebar.selectbox(
 
 
 
-if selected == 'Jobs':
-    st.header("Job Recommendations")
+# if selected == 'Jobs':
+#     st.header("Job Recommendations")
     
-    tot_middle = []
+#     tot_middle = []
   
-    df = pd.DataFrame(list(zip(candidate_names,skill_list,candidate_skills)),columns=['Candidates','Skills','complete_skills'])
-    #print(df_position_filter)
-    ind_skills = list(df['Skills'].str.split(",").values)
-    #print(ind_skills)
-    cand = st.sidebar.multiselect("Filter by Candidate Name", options=df['Candidates'].unique(),default=df['Candidates'])
-    skills = st.sidebar.multiselect("Filter by Candidate Skill", options=df['Skills'],default=df['Skills'])
-    #pos = st.sidebar.multiselect("Tenure", options=df['Tenure'].unique(),default=df['Tenure'].unique())
-    #print(skills)
-    df_filtered = df.query(
-        "Candidates == @cand & Skills == @skills"
-    )
-    #print(df_filtered.values)
+#     df = pd.DataFrame(list(zip(candidate_names,skill_list,candidate_skills)),columns=['Candidates','Skills','complete_skills'])
+#     #print(df_position_filter)
+#     ind_skills = list(df['Skills'].str.split(",").values)
+#     #print(ind_skills)
+#     cand = st.sidebar.multiselect("Filter by Candidate Name", options=df['Candidates'].unique(),default=df['Candidates'])
+#     skills = st.sidebar.multiselect("Filter by Candidate Skill", options=df['Skills'],default=df['Skills'])
+#     #pos = st.sidebar.multiselect("Tenure", options=df['Tenure'].unique(),default=df['Tenure'].unique())
+#     #print(skills)
+#     df_filtered = df.query(
+#         "Candidates == @cand & Skills == @skills"
+#     )
+#     #print(df_filtered.values)
     
     
-    col1, col2, col3 = st.columns([7,7,7])
-    #positions.insert(0,"")
-    with col1:
-        st.write("")
-        st.write("")
-        @st.cache
-        def convert_df(df):
-                # IMPORTANT: Cache the conversion to prevent computation on every rerun
-            return df.to_csv().encode('utf-8')
+#     col1, col2, col3 = st.columns([7,7,7])
+#     #positions.insert(0,"")
+#     with col1:
+#         st.write("")
+#         st.write("")
+#         @st.cache
+#         def convert_df(df):
+#                 # IMPORTANT: Cache the conversion to prevent computation on every rerun
+#             return df.to_csv().encode('utf-8')
 
-        csv = convert_df(download_df)
+#         csv = convert_df(download_df)
 
-        st.download_button(
-            label="Download Recommendations",
-            data=csv,
-            file_name='job_recommendations.csv',
-            mime='text/csv',
-        )
-        st.write("")
-        st.write("")
-        count = 0
-        for i in df_filtered.values:
-            #print(i)
-            if count != 0:
-                st.write("")
-                st.write("")
+#         st.download_button(
+#             label="Download Recommendations",
+#             data=csv,
+#             file_name='job_recommendations.csv',
+#             mime='text/csv',
+#         )
+#         st.write("")
+#         st.write("")
+#         count = 0
+#         for i in df_filtered.values:
+#             #print(i)
+#             if count != 0:
+#                 st.write("")
+#                 st.write("")
                 
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.container()
-            count+=1
-            st.image('male2.png')
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.container()
+#             count+=1
+#             st.image('male2.png')
             
-            st.write("Name:",i[0])
-            st.write("Skills:",i[2])
-                #st.write("Address:",df_filtered['Candidates'].values[i])
-            #st.write("Tenure:",i[0])
+#             st.write("Name:",i[0])
+#             st.write("Skills:",i[2])
+#                 #st.write("Address:",df_filtered['Candidates'].values[i])
+#             #st.write("Tenure:",i[0])
    
-    with col2:
+#     with col2:
         
        
-        # check df filtered, if name not there then don't show that person's slider too
-        #print(df_filtered['Candidates'].values)
-        count = 100
-        tot_list = []
-        tot_list2 = []
+#         # check df filtered, if name not there then don't show that person's slider too
+#         #print(df_filtered['Candidates'].values)
+#         count = 100
+#         tot_list = []
+#         tot_list2 = []
        
        
-        st.write("")
-        st.write("")
-        st.write("")
-        st.write("")
-        st.write("")
-        st.write("")
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         st.write("")
       
-        for name in candidate_names:
-            if name in df_filtered['Candidates'].values:
-                no_jobs_1 = st.slider('Number of Jobs', 1, len(data['candidates'][name][0]), len(data['candidates'][name][0]) - 2, key =count)
-                count+=1
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
+#         for name in candidate_names:
+#             if name in df_filtered['Candidates'].values:
+#                 no_jobs_1 = st.slider('Number of Jobs', 1, len(data['candidates'][name][0]), len(data['candidates'][name][0]) - 2, key =count)
+#                 count+=1
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
                
             
 
         
 
                 
-                split_list = []
-                split_list2 = []
-                split_middle = []
-                for i in range(no_jobs_1):
+#                 split_list = []
+#                 split_list2 = []
+#                 split_middle = []
+#                 for i in range(no_jobs_1):
                     
-                    split_list.append(data['candidates'][name][0][i])
-                    split_middle.append(data['candidates'][name][0][i])
-                    split_list2.append(data['candidates'][name][1][i])
-                    # counter+=1
-                    # if counter == 2:
-                    #     counter = 0
-                tot_middle.append(split_middle)
-                if len(split_list) < 4:
-                    length = len(split_list)
-                    iterate = 4 - length
-                    for i in range(iterate):
-                        split_list.append("empty")
-                        split_list2.append("empty")
-                tot_list.append(split_list)
-                tot_list2.append(split_list2)
-        print(tot_middle)
-        #st.write("No. of jobs: ", no_jobs_1)
-    with col3:
-        # st.write("")
-        # st.write("")
+#                     split_list.append(data['candidates'][name][0][i])
+#                     split_middle.append(data['candidates'][name][0][i])
+#                     split_list2.append(data['candidates'][name][1][i])
+#                     # counter+=1
+#                     # if counter == 2:
+#                     #     counter = 0
+#                 tot_middle.append(split_middle)
+#                 if len(split_list) < 4:
+#                     length = len(split_list)
+#                     iterate = 4 - length
+#                     for i in range(iterate):
+#                         split_list.append("empty")
+#                         split_list2.append("empty")
+#                 tot_list.append(split_list)
+#                 tot_list2.append(split_list2)
+#         print(tot_middle)
+#         #st.write("No. of jobs: ", no_jobs_1)
+#     with col3:
+#         # st.write("")
+#         # st.write("")
         
-        threshold = st.selectbox("Choose Threshold", ('All','>50%', '>3%'))
+#         threshold = st.selectbox("Choose Threshold", ('All','>50%', '>3%'))
      
-        if threshold == 'All':
-            threshold = 0
-        elif threshold == '>50%':
-            threshold = 0.5
-        elif threshold == '>3%':
-            threshold = 0.03
-        st.write("")
-        st.write("")
-        st.write("")
-        st.write("")
+#         if threshold == 'All':
+#             threshold = 0
+#         elif threshold == '>50%':
+#             threshold = 0.5
+#         elif threshold == '>3%':
+#             threshold = 0.03
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         st.write("")
      
-        for i in range(len(tot_list)):
-            for j in range(len(tot_list[i])):
-            #st.write(positions[i])
+#         for i in range(len(tot_list)):
+#             for j in range(len(tot_list[i])):
+#             #st.write(positions[i])
                 
-                if tot_list[i][j] != 'empty':
-                    #print(tot_list[i][j])
-                    if tot_list2[i][j] >= threshold:
+#                 if tot_list[i][j] != 'empty':
+#                     #print(tot_list[i][j])
+#                     if tot_list2[i][j] >= threshold:
 
 
                     
                 
                   
-            #st.markdown('<h5>{} {}</h5>'.format("Job:",positions[i]),unsafe_allow_html=True)
+#             #st.markdown('<h5>{} {}</h5>'.format("Job:",positions[i]),unsafe_allow_html=True)
          
-            #st.markdown('<h6>Job Description</h6><p style="margin-left: 1.5em;">{}</p>'.format(positions[i]),unsafe_allow_html=True)
-                        st.markdown('<p style="margin-left: 3em;padding: 3px 5px 2px 20px;border-width: 4px; border-color: red; border-style:solid;"><u>{}</u><br></br></p>'.format(tot_list[i][j]),unsafe_allow_html=True)
-                    else:
-                        st.write("")
-                        st.write("")
-                        st.write("")
-                        st.write("")
-                        st.write("")
+#             #st.markdown('<h6>Job Description</h6><p style="margin-left: 1.5em;">{}</p>'.format(positions[i]),unsafe_allow_html=True)
+#                         st.markdown('<p style="margin-left: 3em;padding: 3px 5px 2px 20px;border-width: 4px; border-color: red; border-style:solid;"><u>{}</u><br></br></p>'.format(tot_list[i][j]),unsafe_allow_html=True)
+#                     else:
+#                         st.write("")
+#                         st.write("")
+#                         st.write("")
+#                         st.write("")
+#                         st.write("")
                      
 
-                else:
-                    st.write("")
-                    st.write("")
-                    st.write("")
-                    # st.write("")
-                    st.write("")
-                    st.write("")
+#                 else:
+#                     st.write("")
+#                     st.write("")
+#                     st.write("")
+#                     # st.write("")
+#                     st.write("")
+#                     st.write("")
                  
                
-                    # st.write("")
-                    # st.write("")
-                    # st.write("")
+#                     # st.write("")
+#                     # st.write("")
+#                     # st.write("")
                         
                    
 
            
            
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            #st.write("")
-            st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             #st.write("")
+#             st.write("")
           
-            # st.write("")
-            # st.write("")
+#             # st.write("")
+#             # st.write("")
             
             
-            #st.markdown('<h5></h5><p style="margin-left: 2.5em;padding: 0em 3em 0em 0em;border-width: 3px; border-color: red; border-style:dashed;"><u>{}</u><br></br>{}</p>'.format(positions[i],position_address[i]),unsafe_allow_html=True)
+#             #st.markdown('<h5></h5><p style="margin-left: 2.5em;padding: 0em 3em 0em 0em;border-width: 3px; border-color: red; border-style:dashed;"><u>{}</u><br></br>{}</p>'.format(positions[i],position_address[i]),unsafe_allow_html=True)
   
         
-    # with col4:
+#     # with col4:
       
-    #     count = 0
-    #     for i in tot_list:
-    #         for j in i:
-    #             st.write("")
-    #             st.write("")
-    #             if j != 'empty':
-    #                 val1 = st.checkbox("", value=True, key = count+1)
-    #                 print(val1)
+#     #     count = 0
+#     #     for i in tot_list:
+#     #         for j in i:
+#     #             st.write("")
+#     #             st.write("")
+#     #             if j != 'empty':
+#     #                 val1 = st.checkbox("", value=True, key = count+1)
+#     #                 print(val1)
                     
                   
-    #                 st.write("")
-    #                 # st.write("")
-    #                 # st.write("")
-    #                 # st.write("")
-    #             else:
-    #                 #st.write("")
-    #                 st.write("")
-    #                 st.write("")
-    #                 st.write("")
-    #                 st.write("")
-    #                 st.write("")
-    #                 st.write("")
-    #                 st.write("")
+#     #                 st.write("")
+#     #                 # st.write("")
+#     #                 # st.write("")
+#     #                 # st.write("")
+#     #             else:
+#     #                 #st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
           
-                    # if count > 3:
-                    #     st.write("")
-                    #     st.write("")
+#                     # if count > 3:
+#                     #     st.write("")
+#                     #     st.write("")
                         
-                    # st.write("")
-                    # st.write("")
-                    # st.write("")
+#                     # st.write("")
+#                     # st.write("")
+#                     # st.write("")
 
                 
-            #     count+=1
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            #st.write("")
+#             #     count+=1
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             #st.write("")
             
-    #     st.write("")
-    #     st.write("")
-    #     for i in split_list[1]:
-    #         #st.write(positions[i])
+#     #     st.write("")
+#     #     st.write("")
+#     #     for i in split_list[1]:
+#     #         #st.write(positions[i])
            
-    #         #st.markdown('<h5>{} {}</h5>'.format("Job:",positions[i]),unsafe_allow_html=True)
+#     #         #st.markdown('<h5>{} {}</h5>'.format("Job:",positions[i]),unsafe_allow_html=True)
          
-    #         #st.markdown('<h6>Job Description</h6><p style="margin-left: 1.5em;">{}</p>'.format(positions[i]),unsafe_allow_html=True)
-    #         st.markdown('<p style="margin-left: 2.5em;padding: 3px 5px 2px 20px;border-width: 4px; border-color: red; border-style:solid;"><u>{}</u><br></br></p>'.format(i),unsafe_allow_html=True)
+#     #         #st.markdown('<h6>Job Description</h6><p style="margin-left: 1.5em;">{}</p>'.format(positions[i]),unsafe_allow_html=True)
+#     #         st.markdown('<p style="margin-left: 2.5em;padding: 3px 5px 2px 20px;border-width: 4px; border-color: red; border-style:solid;"><u>{}</u><br></br></p>'.format(i),unsafe_allow_html=True)
 
-if selected == 'Employees':
-    st.header("Candidate Recommendations")
+# if selected == 'Employees':
+#     st.header("Candidate Recommendations")
     
-    tot_middle = []
+#     tot_middle = []
   
-    df = pd.DataFrame(list(zip(positions,position_address)),columns=['Jobs','Address'])
-    #print(df_position_filter)
-    #ind_skills = list(df['Skills'].str.split(",").values)
-    #print(ind_skills)
-    job = st.sidebar.multiselect("Filter by Job Name", options=df['Jobs'].unique(),default=df['Jobs'])
-    address = st.sidebar.multiselect("Filter by Job Address", options=df['Address'].unique(),default=df['Address'])
-    #pos = st.sidebar.multiselect("Tenure", options=df['Tenure'].unique(),default=df['Tenure'].unique())
-    #print(skills)
-    df_filtered2 = df.query(
-        "Jobs == @job & Address == @address"
-    )
-    #print(df_filtered.values)
+#     df = pd.DataFrame(list(zip(positions,position_address)),columns=['Jobs','Address'])
+#     #print(df_position_filter)
+#     #ind_skills = list(df['Skills'].str.split(",").values)
+#     #print(ind_skills)
+#     job = st.sidebar.multiselect("Filter by Job Name", options=df['Jobs'].unique(),default=df['Jobs'])
+#     address = st.sidebar.multiselect("Filter by Job Address", options=df['Address'].unique(),default=df['Address'])
+#     #pos = st.sidebar.multiselect("Tenure", options=df['Tenure'].unique(),default=df['Tenure'].unique())
+#     #print(skills)
+#     df_filtered2 = df.query(
+#         "Jobs == @job & Address == @address"
+#     )
+#     #print(df_filtered.values)
     
     
-    col1, col2, col3 = st.columns([7,7,7])
-    #positions.insert(0,"")
-    with col1:
-        st.write("")
-        st.write("")
-        @st.cache
-        def convert_df(df):
-                # IMPORTANT: Cache the conversion to prevent computation on every rerun
-            return df.to_csv().encode('utf-8')
+#     col1, col2, col3 = st.columns([7,7,7])
+#     #positions.insert(0,"")
+#     with col1:
+#         st.write("")
+#         st.write("")
+#         @st.cache
+#         def convert_df(df):
+#                 # IMPORTANT: Cache the conversion to prevent computation on every rerun
+#             return df.to_csv().encode('utf-8')
 
-        csv = convert_df(download_df2)
+#         csv = convert_df(download_df2)
 
-        st.download_button(
-            label="Download Recommendations",
-            data=csv,
-            file_name='employee_recommendations.csv',
-            mime='text/csv',
-        )
-        st.write("")
-        st.write("")
-        st.write("")
-        #st.write("")
-        #st.write("")
-        # st.write("")
-        count = 0
-        for i in df_filtered2.values:
-            #print(i)
-            if count > 0:
-                # st.write("")
-                # st.write("")
+#         st.download_button(
+#             label="Download Recommendations",
+#             data=csv,
+#             file_name='employee_recommendations.csv',
+#             mime='text/csv',
+#         )
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         #st.write("")
+#         #st.write("")
+#         # st.write("")
+#         count = 0
+#         for i in df_filtered2.values:
+#             #print(i)
+#             if count > 0:
+#                 # st.write("")
+#                 # st.write("")
                 
-                # st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                #st.write("")
-                # st.write("")
-                # st.write("")
-                # st.write("")
-            if count > 1:
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-            # if count > 6:
-            #     st.write("")
+#                 # st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 #st.write("")
+#                 # st.write("")
+#                 # st.write("")
+#                 # st.write("")
+#             if count > 1:
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#             # if count > 6:
+#             #     st.write("")
                
            
 
-            count+=1
-            #st.image('male2.png')
-            st.markdown('<h2>{}</h2>'.format(i[0]),unsafe_allow_html=True)
+#             count+=1
+#             #st.image('male2.png')
+#             st.markdown('<h2>{}</h2>'.format(i[0]),unsafe_allow_html=True)
 
-            # st.write("Job:",i[0])
-            st.write("Address:",i[1])
-                #st.write("Address:",df_filtered['Candidates'].values[i])
-            #st.write("Tenure:",i[0])
+#             # st.write("Job:",i[0])
+#             st.write("Address:",i[1])
+#                 #st.write("Address:",df_filtered['Candidates'].values[i])
+#             #st.write("Tenure:",i[0])
    
-    with col2:
+#     with col2:
         
        
-        # check df filtered, if name not there then don't show that person's slider too
-        #print(df_filtered['Candidates'].values)
-        count = 100
-        tot_list = []
-        tot_list2 = []
+#         # check df filtered, if name not there then don't show that person's slider too
+#         #print(df_filtered['Candidates'].values)
+#         count = 100
+#         tot_list = []
+#         tot_list2 = []
        
        
-        st.write("")
-        st.write("")
-        st.write("")
-        st.write("")
-        st.write("")
-        st.write("")
-        st.write("")
-        print(tot_middle)
-        for name in positions:
-            if name in df_filtered2['Jobs'].values:
-                no_jobs_1 = st.slider('Number of Employees', 1, len(data['job_fits'][name][0]), len(data['job_fits'][name][0]) - 2, key =count)
-                count+=1
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                st.write("")
-                if count > 106:
-                    st.write("")
-                    st.write("")
-                    st.write("")
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         print(tot_middle)
+#         for name in positions:
+#             if name in df_filtered2['Jobs'].values:
+#                 no_jobs_1 = st.slider('Number of Employees', 1, len(data['job_fits'][name][0]), len(data['job_fits'][name][0]) - 2, key =count)
+#                 count+=1
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
+#                 if count > 106:
+#                     st.write("")
+#                     st.write("")
+#                     st.write("")
                 
             
 
         
 
                 
-                split_list = []
-                split_list2 = []
-                split_middle = []
-                for i in range(no_jobs_1):
+#                 split_list = []
+#                 split_list2 = []
+#                 split_middle = []
+#                 for i in range(no_jobs_1):
                     
-                    split_list.append(data['job_fits'][name][0][i])
-                    split_middle.append(data['job_fits'][name][0][i])
-                    split_list2.append(data['job_fits'][name][1][i])
-                    # counter+=1
-                    # if counter == 2:
-                    #     counter = 0
-                tot_middle.append(split_middle)
-                if len(split_list) < 4:
-                    length = len(split_list)
-                    iterate = 4 - length
-                    for i in range(iterate):
-                        split_list.append("empty")
-                        split_list2.append("empty")
-                tot_list.append(split_list)
-                tot_list2.append(split_list2)
-        print(tot_middle)
-        #st.write("No. of jobs: ", no_jobs_1)
-    with col3:
-        # st.write("")
-        # st.write("")
+#                     split_list.append(data['job_fits'][name][0][i])
+#                     split_middle.append(data['job_fits'][name][0][i])
+#                     split_list2.append(data['job_fits'][name][1][i])
+#                     # counter+=1
+#                     # if counter == 2:
+#                     #     counter = 0
+#                 tot_middle.append(split_middle)
+#                 if len(split_list) < 4:
+#                     length = len(split_list)
+#                     iterate = 4 - length
+#                     for i in range(iterate):
+#                         split_list.append("empty")
+#                         split_list2.append("empty")
+#                 tot_list.append(split_list)
+#                 tot_list2.append(split_list2)
+#         print(tot_middle)
+#         #st.write("No. of jobs: ", no_jobs_1)
+#     with col3:
+#         # st.write("")
+#         # st.write("")
         
-        threshold = st.selectbox("Choose Threshold", ('All','>30%', '>3%'))
+#         threshold = st.selectbox("Choose Threshold", ('All','>30%', '>3%'))
      
-        if threshold == 'All':
-            threshold = 0
-        elif threshold == '>30%':
-            threshold = 0.3
-        elif threshold == '>3%':
-            threshold = 0.03
-        st.write("")
-        st.write("")
-        st.write("")
-        st.write("")
-        # st.write("")
-        count = 0
-        for i in range(len(tot_list)):
-            for j in range(len(tot_list[i])):
-            #st.write(positions[i])
+#         if threshold == 'All':
+#             threshold = 0
+#         elif threshold == '>30%':
+#             threshold = 0.3
+#         elif threshold == '>3%':
+#             threshold = 0.03
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         st.write("")
+#         # st.write("")
+#         count = 0
+#         for i in range(len(tot_list)):
+#             for j in range(len(tot_list[i])):
+#             #st.write(positions[i])
                 
-                if tot_list[i][j] != 'empty':
-                    #print(tot_list[i][j])
-                    if tot_list2[i][j] >= threshold:
+#                 if tot_list[i][j] != 'empty':
+#                     #print(tot_list[i][j])
+#                     if tot_list2[i][j] >= threshold:
 
 
 
                     
                 
                   
-            #st.markdown('<h5>{} {}</h5>'.format("Job:",positions[i]),unsafe_allow_html=True)
+#             #st.markdown('<h5>{} {}</h5>'.format("Job:",positions[i]),unsafe_allow_html=True)
          
-            #st.markdown('<h6>Job Description</h6><p style="margin-left: 1.5em;">{}</p>'.format(positions[i]),unsafe_allow_html=True)
-                        st.markdown('<p style="margin-left: 3em;padding: 3px 5px 2px 20px;border-width: 4px; border-color: red; border-style:solid;"><u>{}</u><br></br></p>'.format(tot_list[i][j]),unsafe_allow_html=True)
-                    else:
-                        st.write("")
-                        st.write("")
-                        st.write("")
-                        st.write("")
-                        st.write("")
-                        st.write("")
-                        st.write("")
-                        if count > 9:
-                            st.write("")
-                            st.write("")
+#             #st.markdown('<h6>Job Description</h6><p style="margin-left: 1.5em;">{}</p>'.format(positions[i]),unsafe_allow_html=True)
+#                         st.markdown('<p style="margin-left: 3em;padding: 3px 5px 2px 20px;border-width: 4px; border-color: red; border-style:solid;"><u>{}</u><br></br></p>'.format(tot_list[i][j]),unsafe_allow_html=True)
+#                     else:
+#                         st.write("")
+#                         st.write("")
+#                         st.write("")
+#                         st.write("")
+#                         st.write("")
+#                         st.write("")
+#                         st.write("")
+#                         if count > 9:
+#                             st.write("")
+#                             st.write("")
 
                      
 
-                else:
-                    count +=1
-                    st.write("")
-                    st.write("")
-                    st.write("")
-                    # st.write("")
-                    st.write("")
-                    #st.write("")
-                    if count > 9:
-                        st.write("")
-                        #st.write("")
-                        # st.write("")
+#                 else:
+#                     count +=1
+#                     st.write("")
+#                     st.write("")
+#                     st.write("")
+#                     # st.write("")
+#                     st.write("")
+#                     #st.write("")
+#                     if count > 9:
+#                         st.write("")
+#                         #st.write("")
+#                         # st.write("")
 
                  
                
-                    # st.write("")
-                    # st.write("")
-                    # st.write("")
+#                     # st.write("")
+#                     # st.write("")
+#                     # st.write("")
                         
                    
 
            
            
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            st.write("")
-            #st.write("")
-            #st.write("")
-            if count >1:
-                st.write("")
-                st.write("")
-                st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             st.write("")
+#             #st.write("")
+#             #st.write("")
+#             if count >1:
+#                 st.write("")
+#                 st.write("")
+#                 st.write("")
                 
          
 
           
-            # st.write("")
-            # st.write("")
+#             # st.write("")
+#             # st.write("")
             
             
-            #st.markdown('<h5></h5><p style="margin-left: 2.5em;padding: 0em 3em 0em 0em;border-width: 3px; border-color: red; border-style:dashed;"><u>{}</u><br></br>{}</p>'.format(positions[i],position_address[i]),unsafe_allow_html=True)
+#             #st.markdown('<h5></h5><p style="margin-left: 2.5em;padding: 0em 3em 0em 0em;border-width: 3px; border-color: red; border-style:dashed;"><u>{}</u><br></br>{}</p>'.format(positions[i],position_address[i]),unsafe_allow_html=True)
   
         
-    # with col4:
+#     # with col4:
       
-    #     count = 0
-    #     for i in tot_list:
-    #         for j in i:
-    #             st.write("")
-    #             st.write("")
-    #             if j != 'empty':
-    #                 val1 = st.checkbox("", value=True, key = count+1)
-    #                 print(val1)
+#     #     count = 0
+#     #     for i in tot_list:
+#     #         for j in i:
+#     #             st.write("")
+#     #             st.write("")
+#     #             if j != 'empty':
+#     #                 val1 = st.checkbox("", value=True, key = count+1)
+#     #                 print(val1)
                     
                   
-    #                 st.write("")
-    #                 # st.write("")
-    #                 # st.write("")
-    #                 # st.write("")
-    #             else:
-    #                 #st.write("")
-    #                 st.write("")
-    #                 st.write("")
-    #                 st.write("")
-    #                 st.write("")
-    #                 st.write("")
-    #                 st.write("")
-    #                 st.write("")
+#     #                 st.write("")
+#     #                 # st.write("")
+#     #                 # st.write("")
+#     #                 # st.write("")
+#     #             else:
+#     #                 #st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
+#     #                 st.write("")
           
-                    # if count > 3:
-                    #     st.write("")
-                    #     st.write("")
+#                     # if count > 3:
+#                     #     st.write("")
+#                     #     st.write("")
                         
-                    # st.write("")
-                    # st.write("")
-                    # st.write("")
+#                     # st.write("")
+#                     # st.write("")
+#                     # st.write("")
 
                 
-            #     count+=1
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            # st.write("")
-            #st.write("")
+#             #     count+=1
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             # st.write("")
+#             #st.write("")
             
-    #     st.write("")
-    #     st.write("")
-    #     for i in split_list[1]:
-    #         #st.write(positions[i])
+#     #     st.write("")
+#     #     st.write("")
+#     #     for i in split_list[1]:
+#     #         #st.write(positions[i])
            
-    #         #st.markdown('<h5>{} {}</h5>'.format("Job:",positions[i]),unsafe_allow_html=True)
+#     #         #st.markdown('<h5>{} {}</h5>'.format("Job:",positions[i]),unsafe_allow_html=True)
          
-    #         #st.markdown('<h6>Job Description</h6><p style="margin-left: 1.5em;">{}</p>'.format(positions[i]),unsafe_allow_html=True)
-    #         st.markdown('<p style="margin-left: 2.5em;padding: 3px 5px 2px 20px;border-width: 4px; border-color: red; border-style:solid;"><u>{}</u><br></br></p>'.format(i),unsafe_allow_html=True)
+#     #         #st.markdown('<h6>Job Description</h6><p style="margin-left: 1.5em;">{}</p>'.format(positions[i]),unsafe_allow_html=True)
+#     #         st.markdown('<p style="margin-left: 2.5em;padding: 3px 5px 2px 20px;border-width: 4px; border-color: red; border-style:solid;"><u>{}</u><br></br></p>'.format(i),unsafe_allow_html=True)
