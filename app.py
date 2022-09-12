@@ -143,7 +143,7 @@ for skill in candidate_skills:
     skill_list.append(skill.split(",")[0])
 #print(skill_list)
 st.set_page_config(
-    page_title="IOM",
+    page_title="IOM APP",
     layout="wide"
 )
 download_df = pd.DataFrame(list(zip(candidate_names,candidate_skills,job_recommend)),columns=['Candidates','Skills','Top Job Recommendation'])
