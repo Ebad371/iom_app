@@ -150,20 +150,7 @@ download_df = pd.DataFrame(list(zip(candidate_names,candidate_skills,job_recomme
 download_df2 = pd.DataFrame(list(zip(positions,position_address,cand_recommend)),columns=['Jobs','Address','Top Candidate Recommendation'])
 
 
-st.markdown(
-    """
-    <style>
-    [data-testid="stSidebar"][aria-expanded="true"] > div:first-child{
-        width: 250px;
-    }
-    [data-testid="stSidebar"][aria-expanded="false"] > div:first-child{
-        width: 250px;
-        margin-left: -250px;
-    }
-     
-    """,
-    unsafe_allow_html=True,
-)
+
 selected = st.sidebar.selectbox(
     "Menu",
     ("Jobs","Employees"),
