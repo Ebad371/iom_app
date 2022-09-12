@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'iomapp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_10B0F0DDCDD2423DB7F9889949856616 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8B20A28E774F47BD992DA344E5D07BCA }}
